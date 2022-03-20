@@ -39,7 +39,6 @@ public class LoginController {
     //로그인시 토큰 없을 때 토큰 발행
     @PostMapping("/post/token")
     public SingleResponse<HashMap<String,String>> getToken(@RequestBody String email, String pw){
-        log.info("[LoginController] Request ::::: ",email +"     "+ pw );
         //로그인 정보 체크
         HashMap<String,String> map = new HashMap<String,String>();
         if(!loginService.checkLogin(email,pw)){

@@ -39,8 +39,6 @@ public class HttpHandler implements HandlerInterceptor {
         String pw = request.getParameter("pw");
 
         LOGGER.info("[HttpHandler] Request :: Token = {}",token);
-        LOGGER.info("[HttpHandler] Request :: Email = {}",email);
-        LOGGER.info("[HttpHandler] Request :: Password = {}",pw);
 
 
         if(token == null){

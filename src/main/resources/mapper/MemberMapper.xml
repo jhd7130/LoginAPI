@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.flab.loginjoinAPI.mapper.MemberMapper">
+    <select id="selectList" resultType="Member">
+        SELECT * FROM member
+    </select>
+
+    <select id="getMember" parameterType="String" resultType="Member">
+        SELECT
+           *
+        FROM
+            MEMBER
+        WHERE
+            MEMBER_EMAIL = #{email}
+    </select>
+
+    <insert id="putMember" parameterType="Member" >
+        INSERT INTO MEMBER(MEMBER_EMAIL, MEMBER_NAME,MEMBER_PHONE,MEMBER_PW)
+        VALUES (
+               #{email}
+             , #{name}
+             , #{phone}
+             , #{pw}
+        )
+    </insert>
+</mapper>

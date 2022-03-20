@@ -4,8 +4,9 @@ server:
 
 
 #Database
-datasource:
-    url: jdbc:h2:~/flab
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/flab
     username: sa
     password:
-    driverClassName: org.h2.Driver

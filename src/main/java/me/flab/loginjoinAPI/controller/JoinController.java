@@ -1,43 +1,47 @@
 package me.flab.loginjoinAPI.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import me.flab.loginjoinAPI.data.ResponseProviderService;
+import me.flab.loginjoinAPI.data.SingleResponse;
+import me.flab.loginjoinAPI.data.dto.Member;
+import me.flab.loginjoinAPI.service.JoinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
-@RequestMapping
 public class JoinController {
-
     private final Logger LOGGER = LoggerFactory.getLogger(JoinController.class);
 
+    private JoinService joinService;
+    private ResponseProviderService responseProviderService;
+
+    public JoinController(JoinService joinService, ResponseProviderService responseProviderService){
+        this.joinService = joinService;
+        this.responseProviderService = responseProviderService;
+    }
+
+    // page 열기
     @GetMapping("/get/page")
-    public String getPage(){
-        //사이 로직이 걸린 시간 체크
-        long startTime = System.currentTimeMillis();
-
-
-
-        LOGGER.info("[JoinController] Response :: ResponseTime = {}",System.currentTimeMillis() - startTime);
-        return "String";
+    public String openPage(){
+        return "회원가입페이지";
     }
 
-    @PostMapping("/get/token")
-    public String getToken(){
-        return "ok here is your token";
+    // id 중복체크
+    @GetMapping("/get/email")
+    public SingleResponse<Member> getId(String email){
+        return responseProviderService.getSingleResponse(joinService.getMember(email));
     }
 
-    @GetMapping("/get/id")
-    public String getId(){
-        return"유효한/유효하지 않은 id";
-    }
 
+    //회원가입
     @PostMapping("/put/member")
-    public String putMember(){
-        return "";
+    public SingleResponse<Integer> putMember(@RequestBody  Member mem){
+           log.info("[Member Information] request ::: mem ={}", mem.toString());
+        return responseProviderService.getSingleResponse(joinService.putMember(mem));
     }
 }

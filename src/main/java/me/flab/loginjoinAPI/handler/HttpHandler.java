@@ -49,7 +49,7 @@ public class HttpHandler implements HandlerInterceptor {
                response.sendRedirect("/get/loginPage");
                return false;
            }
-            
+
            /*
            아이디 비밀번호 체크 후 토큰 발행
            토큰 발행후 response헤더에 담아서 반환
@@ -59,6 +59,7 @@ public class HttpHandler implements HandlerInterceptor {
             log.info("true and false pw ={}", pw);
 
 
+           // 이게 왜 null이 나오는지 모르겠다. 좀 더 봐야겠다.
            if(loginService.checkLogin(email,pw)){
               token =  jwtProvider.createToken(email,pw);
               response.setHeader(AUTHORIZATION_HEADER,token);
@@ -67,7 +68,7 @@ public class HttpHandler implements HandlerInterceptor {
            //여기서 어떻게 반환객체를 따로 만들어서 반환해주고 싶은데 아직 모르겠다.
             response.sendRedirect("/get/loginPage");
             return false;
-        }
+           }
 
         if(jwtProvider.validateToken(token)){
             response.sendRedirect("메인페이지주소");

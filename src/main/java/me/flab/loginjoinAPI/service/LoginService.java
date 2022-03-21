@@ -15,7 +15,6 @@ public class LoginService {
     public boolean checkLogin(String email, String pw) {
         List<Member> members = memberMapper.getMember(email);
         // 혹시 발생할 수 있는 이메일 중복 체크
-        log.info("How many member ::: ", members.size());
         if(members.size() != 1){
             return false;
         }

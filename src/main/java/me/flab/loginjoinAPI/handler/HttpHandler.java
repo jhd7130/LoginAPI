@@ -31,7 +31,6 @@ public class HttpHandler implements HandlerInterceptor {
         this.loginService=loginService;
     }
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
         String token = request.getHeader(AUTHORIZATION_HEADER);
@@ -39,7 +38,6 @@ public class HttpHandler implements HandlerInterceptor {
         String pw = request.getParameter("pw");
 
         LOGGER.info("[HttpHandler] Request :: Token = {}",token);
-
 
         if(token == null){
 
@@ -52,10 +50,6 @@ public class HttpHandler implements HandlerInterceptor {
            아이디 비밀번호 체크 후 토큰 발행
            토큰 발행후 response헤더에 담아서 반환
            */
-
-            log.info("true and false email={}", email);
-            log.info("true and false pw ={}", pw);
-
 
            // 이게 왜 null이 나오는지 모르겠다. 좀 더 봐야겠다.
            if(loginService.checkLogin(email,pw)){

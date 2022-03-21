@@ -1,4 +1,4 @@
-package me.flab.loginjoinAPI.data;
+package me.flab.loginjoinAPI.service;
 
 import me.flab.loginjoinAPI.data.CommonResponse;
 import me.flab.loginjoinAPI.data.ListResponse;

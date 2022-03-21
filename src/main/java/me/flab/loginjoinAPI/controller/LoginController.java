@@ -1,10 +1,8 @@
 package me.flab.loginjoinAPI.controller;
 
-import io.jsonwebtoken.Jwt;
 import lombok.extern.slf4j.Slf4j;
-import me.flab.loginjoinAPI.data.ResponseProviderService;
+import me.flab.loginjoinAPI.service.ResponseProviderService;
 import me.flab.loginjoinAPI.data.SingleResponse;
-import me.flab.loginjoinAPI.data.dto.Member;
 import me.flab.loginjoinAPI.security.JwtProvider;
 import me.flab.loginjoinAPI.service.LoginService;
 import org.springframework.web.bind.annotation.GetMapping;

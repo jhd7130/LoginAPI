@@ -1,8 +1,6 @@
 package me.flab.loginjoinAPI.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import me.flab.loginjoinAPI.service.ResponseProviderService;
-import me.flab.loginjoinAPI.data.SingleResponse;
 import me.flab.loginjoinAPI.data.dto.Member;
 import me.flab.loginjoinAPI.service.JoinService;
 import org.slf4j.Logger;

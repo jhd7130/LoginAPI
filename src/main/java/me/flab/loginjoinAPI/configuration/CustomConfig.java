@@ -10,9 +10,9 @@ public class CustomConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(new HttpHandler())
-                .addPathPatterns("/get/login")
-                .excludePathPatterns("/post/token");
+      //  registry.addInterceptor(new HttpHandler())
+       //         .addPathPatterns("/*")
+         //       .addPathPatterns("/get/login/token");
         // 어떤 url로 들어왔을때 handler를 통과 시킬 것인지 어떤 것은 제외할 것인지 등록
     }
 

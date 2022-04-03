@@ -7,13 +7,10 @@
         SELECT * FROM member
     </select>
 
-    <select id="getMember" parameterType="String" resultType="Member">
-        SELECT
-           *
-        FROM
-            MEMBER
-        WHERE
-            MEMBER_EMAIL = #{email}
+    <select id="getMember" parameterType="String" resultType="SignInRequest">
+        SELECT MEMBER_EMAIL AS EMAIL, MEMBER_PW AS PW
+        FROM MEMBER
+        WHERE MEMBER_EMAIL = '${email}'
     </select>
 
     <insert id="putMember" parameterType="Member" >

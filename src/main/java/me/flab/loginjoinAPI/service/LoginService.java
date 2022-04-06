@@ -29,23 +29,6 @@ public class LoginService {
         this.jwtProvider = jwtProvider;
     }
 
-    public int checkLogin(SignInRequest signInRequest) {
-        // member서비스에서 필요한 메서드들을 가져와서 사용하여 줄이기 반환값은 response객체 사용하기
-        SignInRequest member = memberMapper.loginCheck(signInRequest);
-        log.info("LoginService :::: member:{}",member);
-
-        //이메일 중복 체크 && 비밀번호 중복체크까지 완료된 상황(쿼리에서 그렇게 받아서 던져줌
-
-        if(member == null){
-            throw new CustomException(ErrorCode.MEMBER_NOT_FOUND);
-        }
-
-       // String token = jwtProvider.createToken(email,pw);
-
-        //문제없이 넘어갈 경우 1을 http header에 일단 token을 담는다
-        return 1;
-    }
-
     public Response login(SignInRequest signInRequest, HttpServletResponse response){
         //여기로 들어왔다는 이야기는 로그인 페이지에서 로그인을 시도했다는 의미 따라서 토큰 생성
         String token = jwtProvider.createToken(signInRequest.getEmail(), signInRequest.getPw());

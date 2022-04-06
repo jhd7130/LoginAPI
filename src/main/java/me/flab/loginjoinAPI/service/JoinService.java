@@ -25,13 +25,19 @@ public class JoinService {
         return memberMapper.selectList();
     }
 
-    public Member getMember(String email){
+    public String getMember(String email){
         log.info("[JoinService] Request :::: email ={}",email);
-        return   memberMapper.getMember(email).get(1);
+        if(memberMapper.getMember(email) == null){
+            return "Success";
+        }
+        return   "Fail";
     }
 
-    public Integer putMember(Member mem){
-        return memberMapper.putMember(mem);
+    public String putMember(Member mem){
+        if(memberMapper.putMember(mem) > 0 ){
+            return "Success";
+        }
+        return "Fail";
     }
 
 

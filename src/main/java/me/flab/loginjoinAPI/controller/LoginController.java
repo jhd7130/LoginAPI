@@ -1,53 +1,52 @@
 package me.flab.loginjoinAPI.controller;
 
-import io.jsonwebtoken.Jwt;
+
 import lombok.extern.slf4j.Slf4j;
-import me.flab.loginjoinAPI.data.ResponseProviderService;
-import me.flab.loginjoinAPI.data.SingleResponse;
-import me.flab.loginjoinAPI.data.dto.Member;
+import me.flab.loginjoinAPI.data.Response;
+import me.flab.loginjoinAPI.data.dto.SignInRequest;
 import me.flab.loginjoinAPI.security.JwtProvider;
 import me.flab.loginjoinAPI.service.LoginService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@Slf4j
 @RestController
+@Slf4j
 public class LoginController {
 
-    private JwtProvider jwtProvider;
     private LoginService loginService;
-    private ResponseProviderService responseProviderService;
+    private JwtProvider jwtProvider;
 
-    public LoginController(JwtProvider jwtProvider){
+    public LoginController(LoginService loginService, JwtProvider jwtProvider){
+        this.loginService = loginService;
         this.jwtProvider = jwtProvider;
     }
+    /*로그인페이지 열기 -- 필요 없을 수도? */
+    @GetMapping("/loginPage")
+    public String loginPage(){  return"로그인페이지";}
 
-
-    /*
-    로그인 페이지 들어오기 전 prehandler로 token 검사
-     */
-    @GetMapping("/get/login")
-    public SingleResponse<String> getLoginPage(){
-        return responseProviderService.getSingleResponse("로그인 실패");
+    // login Post Request
+    // 로그인을 시도에서 걸리는 부분 인터셉터에서 처리되는 부분
+    // 성공 메세지와 토큰 반환
+    @PostMapping("/login")
+    public ResponseEntity<Response> login(@RequestBody SignInRequest signin, HttpServletResponse response){
+        //담아서 반환토큰을 헤더에 담아서 반환
+        // 문제는 토큰을 어디에 담아서 보낼지인데 토큰 정보를 json형식으로 담아서 보내면 프론트에서 담아두는 것인지 == 일단 json형태로 token정보를 반환 4월 6일 수요일
+        return new ResponseEntity(loginService.login(signin,response),HttpStatus.OK);
     }
 
 
-    //로그인시 토큰 없을 때 토큰 발행
-    @PostMapping("/post/token")
-    public SingleResponse<HashMap<String,String>> getToken(@RequestBody String email, String pw){
-        log.info("[LoginController] Request ::::: ",email +"     "+ pw );
-        //로그인 정보 체크
-        HashMap<String,String> map = new HashMap<String,String>();
-        if(!loginService.checkLogin(email,pw)){
-            //로그인실패 반환 객체 던지기
-            return responseProviderService.getSingleResponse(null);
-        }
-
-        map.put("token",jwtProvider.createToken(email,pw));
-        return responseProviderService.getSingleResponse(map);
+    // 회원가입도 하나의 컨트롤러에서 관리하면 편할 듯하다.
+    @PostMapping("/signup")
+    public ResponseEntity signup(HttpServletRequest request){
+        return new ResponseEntity(HttpStatus.OK);
     }
+
+
 }

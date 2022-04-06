@@ -36,8 +36,6 @@ public class LoginController {
     // 성공 메세지와 토큰 반환
     @PostMapping("/login")
     public ResponseEntity<Response> login(@RequestBody SignInRequest signin, HttpServletResponse response){
-
-
         //담아서 반환토큰을 헤더에 담아서 반환
         // 문제는 토큰을 어디에 담아서 보낼지인데 토큰 정보를 json형식으로 담아서 보내면 프론트에서 담아두는 것인지 == 일단 json형태로 token정보를 반환 4월 6일 수요일
         return new ResponseEntity(loginService.login(signin,response),HttpStatus.OK);
@@ -50,8 +48,5 @@ public class LoginController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-
-
-    // SignIn Post Request
 
 }

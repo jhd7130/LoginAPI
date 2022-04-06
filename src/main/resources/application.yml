@@ -1,7 +1,11 @@
 #server
 server:
   port: 9090 #spring boot server
-
+  errror:
+    include-exception: false
+    include-message: always
+    include-stacktrace: on_param
+    whitelabel.enabled: true
 
 #Database
 spring:

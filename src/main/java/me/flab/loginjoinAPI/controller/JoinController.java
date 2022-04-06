@@ -1,16 +1,12 @@
 package me.flab.loginjoinAPI.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import me.flab.loginjoinAPI.data.ResponseProviderService;
-import me.flab.loginjoinAPI.data.SingleResponse;
+import me.flab.loginjoinAPI.data.Response;
 import me.flab.loginjoinAPI.data.dto.Member;
 import me.flab.loginjoinAPI.service.JoinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -18,11 +14,9 @@ public class JoinController {
     private final Logger LOGGER = LoggerFactory.getLogger(JoinController.class);
 
     private JoinService joinService;
-    private ResponseProviderService responseProviderService;
 
-    public JoinController(JoinService joinService, ResponseProviderService responseProviderService){
+    public JoinController(JoinService joinService){
         this.joinService = joinService;
-        this.responseProviderService = responseProviderService;
     }
 
     // page 열기
@@ -33,15 +27,17 @@ public class JoinController {
 
     // id 중복체크
     @GetMapping("/get/email")
-    public SingleResponse<Member> getId(String email){
-        return responseProviderService.getSingleResponse(joinService.getMember(email));
+    public Response getId(String email){
+        log.info("[JoinService] Request email={}",email);
+        return Response.builder().message(joinService.getMember(email)).build();
     }
 
 
     //회원가입
     @PostMapping("/put/member")
-    public SingleResponse<Integer> putMember(@RequestBody  Member mem){
+    public Response putMember(@RequestBody  Member mem){
            log.info("[Member Information] request ::: mem ={}", mem.toString());
-        return responseProviderService.getSingleResponse(joinService.putMember(mem));
+       // joinService.putMember(mem)
+        return Response.builder().message(joinService.putMember(mem)).build();
     }
 }

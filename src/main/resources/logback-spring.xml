@@ -78,7 +78,7 @@
   -->
     <!-- TRACE > DEBUG > INFO > WARN > ERROR > OFF -->
     <!-- Root Logger -->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="console" />
         <!--
         <appender-ref ref="DEBUG_LOG" />

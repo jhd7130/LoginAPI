@@ -12,8 +12,11 @@ public interface MemberMapper {
 
     int inesertMember();
 
-    SignInRequest getMember(String email);
+    SignInRequest loginCheck(SignInRequest signInRequest);
+    Member getMember(String email);
 
     int putMember(Member mem);
+
+    boolean vaildInfo(SignInRequest signInRequest);
 
 }

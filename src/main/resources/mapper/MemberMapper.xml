@@ -7,10 +7,26 @@
         SELECT * FROM member
     </select>
 
+    <select id="loginCheck" parameterType="SignInRequest" resultType="SignInRequest">
+        SELECT MEMBER_EMAIL AS EMAIL, MEMBER_PW AS PW
+        FROM MEMBER
+        WHERE MEMBER_EMAIL = '${email}' AND MEMBER_PW = '${pw}'
+    </select>
+
     <select id="getMember" parameterType="String" resultType="SignInRequest">
         SELECT MEMBER_EMAIL AS EMAIL, MEMBER_PW AS PW
         FROM MEMBER
         WHERE MEMBER_EMAIL = '${email}'
+    </select>
+
+    <select id="vaildInfo" parameterType="SignInRequest" resultType="Boolean">
+        SELECT EXISTS
+        (
+        SELECT *
+        FROM MEMBER
+        WHERE MEMBER_EMAIL = '${email}'
+        AND MEMBER_PW = '${pw}'
+        )
     </select>
 
     <insert id="putMember" parameterType="Member" >

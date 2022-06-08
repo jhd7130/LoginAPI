@@ -21,9 +21,9 @@
  
  ## #4. 기능 테스트  
  ### 로그인 기능.  
- 로그인 성공(액세스토큰, 리프레시토큰 반환) 
+case 1. 로그인 성공(액세스토큰, 리프레시토큰 반환) 
  <img width="1294" alt="스크린샷 2022-06-08 오후 5 32 28" src="https://user-images.githubusercontent.com/78134917/172570665-401a484c-c7de-4cf3-bf61-8525a38caafa.png">.  
-엑세스 토큰 입력 후 로그인 성공 
+case 2. 엑세스 토큰 입력 후 로그인 성공 
 <img width="1295" alt="스크린샷 2022-06-08 오후 5 34 20" src="https://user-images.githubusercontent.com/78134917/172571191-d88df01d-cf0f-4fff-937d-88347832554e.png">.  
 
  ### 로그아웃 기능.  

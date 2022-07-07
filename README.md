@@ -63,7 +63,5 @@ case 2. 엑세스 토큰 입력 후 로그인 성공
   
  
  ### 회원가입 기능.   
- <img width="1291" alt="스크린샷 2022-06-08 오후 5 30 22" src="https://user-images.githubusercontent.com/78134917/172570259-8054ba3f-4fce-42ff-9e3d-16c131e9fcf3.png">.  
-<img width="460" alt="스크린샷 2022-06-08 오후 5 30 43" src="https://user-images.githubusercontent.com/78134917/172570308-1b9eba03-a02d-4306-876e-0c1b4919a9ef.png">.  
-
+ <img width="1291" alt="스크린샷 2022-06-08 오후 5 30 22" src="https://user-images.githubusercontent.com/78134917/172570259-8054ba3f-4fce-42ff-9e3d-16c131e9fcf3.png">
  
